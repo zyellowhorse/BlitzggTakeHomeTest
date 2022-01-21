@@ -3,5 +3,12 @@ version: '3'
 services:
   webhook:
     image: almir/webhook
-    command: -verbose
+    ports:
+      - 9000:9000
+    command: -verbose -hotreload
+    volumes:
+      - ./hooks.json:/etc/webhook/hooks.json
+      - ./scripts:/etc/scripts
+      - ./storage:/storage
+
 

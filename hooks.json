@@ -1,0 +1,7 @@
+[
+  {
+    "id": "append-text",
+    "execute-command": "/etc/scripts/append-text.sh",
+    "command-working-directory": "/storage"
+  }
+]

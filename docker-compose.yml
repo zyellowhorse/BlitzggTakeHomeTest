@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  webhook:
+    image: almir/webhook
+    command: -verbose
+

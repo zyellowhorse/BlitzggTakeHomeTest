@@ -1,3 +1,5 @@
 #! /bin/sh
 
-echo "This is a new line" >> example.txt
+cat $ENV_INPUTFILE >> outputfile.txt
+
+echo "Successfully uploaded file and appended text to file. You can find your file in the storage directory."

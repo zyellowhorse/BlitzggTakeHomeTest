@@ -1,0 +1,30 @@
+#!/bin/bash
+
+fullPathTextFile=""
+
+echo "Enter full path or relitive path to text file: "
+read textFileInput
+
+if [ "$textFileInput" == "" ]
+then
+    echo "Please enter path to text file"
+    exit 1
+fi
+
+if [[ "$textFileInput" == /* ]]
+then
+    fullPathTextFile="$textFileInput"
+elif [[ "$textFileInput" != /* ]]
+then
+    fullPathTextFile=$(pwd)"/$textFileInput"
+else
+    echo "Unable to read file path"
+    exit 1
+fi
+
+encodedFile=$(base64 $fullPathTextFile)
+payload="{\"binary\":\"$encodedFile\"}"
+
+curl -H "Content-Type:application/json" -X POST -d $payload http://localhost:9000/hooks/append-text
+
+exit 0

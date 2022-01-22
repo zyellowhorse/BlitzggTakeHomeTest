@@ -2,6 +2,16 @@
   {
     "id": "append-text",
     "execute-command": "/etc/scripts/append-text.sh",
-    "command-working-directory": "/storage"
+    "command-working-directory": "/storage",
+    "pass-file-to-command":
+    [
+        {
+            "source": "payload",
+            "name": "binary",
+            "envname": "ENV_INPUTFILE",
+            "base64decode": true,
+        }
+    ],
+    "include-command-output-in-response": true
   }
 ]

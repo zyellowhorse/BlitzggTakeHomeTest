@@ -5,6 +5,9 @@ fullPathTextFile=""
 echo "Enter full path or relitive path to text file: "
 read textFileInput
 
+echo "Type the text you wish to append to the end of the file"
+read userTextInput
+
 if [ "$textFileInput" == "" ]
 then
     echo "Please enter path to text file"
@@ -22,8 +25,17 @@ else
     exit 1
 fi
 
-encodedFile=$(base64 $fullPathTextFile)
-payload="{\"binary\":\"$encodedFile\"}"
+if [[ -f "$fullPathTextFile"  ]]
+then
+    encodedTextFile=$(base64 -w 0 $fullPathTextFile)
+else
+    echo "File does not exits. Looking for: $fullPathTextFile"
+    exit 1
+fi
+
+fileName="$(basename $fullPathTextFile)"
+encodedUserTextInput=$(echo $userTextInput | base64 -w 0)
+payload="{\"binary\":\"$encodedTextFile\",\"textinput\":\"$encodedUserTextInput\",\"filename\":\"$fileName\"}"
 
 curl -H "Content-Type:application/json" -X POST -d $payload http://localhost:9000/hooks/append-text
 

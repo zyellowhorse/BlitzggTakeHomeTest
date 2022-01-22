@@ -10,6 +10,19 @@
             "name": "binary",
             "envname": "ENV_INPUTFILE",
             "base64decode": true,
+        },
+        {
+            "source": "payload",
+            "name": "textinput",
+            "envname": "ENV_TEXTINPUT",
+            "base64decode": true,
+        }
+    ],
+    "pass-arguments-to-command":
+    [
+        {
+            "source": "payload",
+            "name": "filename"
         }
     ],
     "include-command-output-in-response": true

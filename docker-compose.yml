@@ -2,6 +2,7 @@ version: '3'
 
 services:
   webhook:
+    container_name: webhook
     image: almir/webhook
     ports:
       - 9000:9000
@@ -14,6 +15,7 @@ services:
       - customNetwork
 
   testContainer:
+    container_name: testContainer
     image: mikesir87/ubuntu-with-curl
     command: tail -f /dev/null
     volumes:

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 fullPathTextFile=""
+staticToken=""
 
 echo "Enter full path or relitive path to text file: "
 read textFileInput
@@ -33,12 +34,20 @@ else
     exit 1
 fi
 
+if [[ "$pwd" == "/" ]]
+then
+    staticTokenPath="/staticToken.txt"
+else
+    staticTokenPath=$(pwd)"/staticToken.txt"
+fi
+
+staticToken=$(cat $staticTokenPath)
 authToken=$(curl -s http://webhook:9000/hooks/get-token || curl -s http://localhost:9000/hooks/get-token)
 
 fileName="$(basename $fullPathTextFile)"
 encodedUserTextInput=$(echo $userTextInput | base64 -w 0)
 payload="{\"binary\":\"$encodedTextFile\",\"textinput\":\"$encodedUserTextInput\",\"filename\":\"$fileName\"}"
 
-curl -s -H "Content-Type:application/json" -H "Authorization: $authToken" -X POST -d $payload http://webhook:9000/hooks/append-text || curl -s -H "Content-Type:application/json" -H "Authorization: $authToken" -X POST -d $payload http://localhost:9000/hooks/append-text
+curl -s -H "Content-Type:application/json" -H "Authorization: $authToken" -X POST -d $payload http://webhook:9000/hooks/append-text?token=$staticToken || curl -s -H "Content-Type:application/json" -H "Authorization: $authToken" -X POST -d $payload http://localhost:9000/hooks/append-text?token=$staticToken
 
 exit 0

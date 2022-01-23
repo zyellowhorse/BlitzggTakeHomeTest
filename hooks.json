@@ -29,7 +29,22 @@
                 "name": "Authorization"
             }
         ],
-        "include-command-output-in-response": true
+        "include-command-output-in-response": true,
+        "incomming-payload-conten-type": "application/json",
+        "http-methods": ["POST"],
+        "trigger-rule":
+        {
+            "match":
+            {
+                "type": "value",
+                "value": "bbbc4488fda14e63828d",
+                "parameter":
+                {
+                    "source": "url",
+                    "name": "token"
+                }
+            }
+        }
     },
     {
         "id": "get-token",
@@ -42,7 +57,8 @@
                 "name": "remote-addr"
             }
         ],
-        "include-command-output-in-response": true
+        "include-command-output-in-response": true,
+        "http-methods": ["GET"]
     }
 ]
 

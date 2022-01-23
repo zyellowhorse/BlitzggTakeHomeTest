@@ -19,6 +19,7 @@ services:
     volumes:
       - ./append-text:/usr/bin/append-text
       - ./exampleFile.txt:/exampleFile.txt
+      - ./staticToken.txt:/staticToken.txt
     networks:
       - customNetwork
 

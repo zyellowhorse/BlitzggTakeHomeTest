@@ -37,6 +37,6 @@ fileName="$(basename $fullPathTextFile)"
 encodedUserTextInput=$(echo $userTextInput | base64 -w 0)
 payload="{\"binary\":\"$encodedTextFile\",\"textinput\":\"$encodedUserTextInput\",\"filename\":\"$fileName\"}"
 
-curl -H "Content-Type:application/json" -X POST -d $payload http://localhost:9000/hooks/append-text
+curl -s -H "Content-Type:application/json" -X POST -d $payload http://webhook:9000/hooks/append-text || curl -s -H "Content-Type:application/json" -X POST -d $payload http://localhost:9000/hooks/append-text
 
 exit 0

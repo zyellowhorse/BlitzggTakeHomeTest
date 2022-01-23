@@ -10,5 +10,17 @@ services:
       - ./hooks.json:/etc/webhook/hooks.json
       - ./scripts:/etc/scripts
       - ./storage:/storage
+    networks:
+      - customNetwork
 
+  testContainer:
+    image: mikesir87/ubuntu-with-curl
+    command: tail -f /dev/null
+    volumes:
+      - ./append-text:/usr/bin/append-text
+      - ./exampleFile.txt:/exampleFile.txt
+    networks:
+      - customNetwork
 
+networks:
+  customNetwork:

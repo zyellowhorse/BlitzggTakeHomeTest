@@ -33,10 +33,12 @@ else
     exit 1
 fi
 
+authToken=$(curl -s http://webhook:9000/hooks/get-token || curl -s http://localhost:9000/hooks/get-token)
+
 fileName="$(basename $fullPathTextFile)"
 encodedUserTextInput=$(echo $userTextInput | base64 -w 0)
 payload="{\"binary\":\"$encodedTextFile\",\"textinput\":\"$encodedUserTextInput\",\"filename\":\"$fileName\"}"
 
-curl -s -H "Content-Type:application/json" -X POST -d $payload http://webhook:9000/hooks/append-text || curl -s -H "Content-Type:application/json" -X POST -d $payload http://localhost:9000/hooks/append-text
+curl -s -H "Content-Type:application/json" -H "Authorization: $authToken" -X POST -d $payload http://webhook:9000/hooks/append-text || curl -s -H "Content-Type:application/json" -H "Authorization: $authToken" -X POST -d $payload http://localhost:9000/hooks/append-text
 
 exit 0

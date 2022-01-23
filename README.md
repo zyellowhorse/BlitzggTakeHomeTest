@@ -16,7 +16,7 @@ You will then be prompted for the text you wish to append to end of the file. On
 If you want to test this from inside the testContainer to make sure the endpoint works within docker networking please run `append-text-inside-container`. The prompts will be the same but you will need to use the exampleFile.txt otherwise a text fill will need to exist inside the container. 
 
 # Summary of its workflow
-When `append-text` is ran it take in values that the user passes in and validates them first if there are errors it will display them and exit. It will create a GET request to the get-token endpoint to get its authToken. get-token will validate that an authToken does not already exist for this IP and if it does respond back with it otherwise generate a new one, save it and respond with the authToken. 
+When append-text is ran it take in values that the user passes in and validates them first if there are errors it will display them and exit. It will create a GET request to the get-token endpoint to get its authToken. get-token will validate that an authToken does not already exist for this IP and if it does respond back with it otherwise generate a new one, save it and respond with the authToken. 
 
 Once it receives its authToken it will encode the users input in base64 and create a POST request to append-text endpoint. The payload will container the encoded values for both the file and the users text. The header of the request will container the authToken previously gathered. The URL will also have a static token appended to end as a query. 
 

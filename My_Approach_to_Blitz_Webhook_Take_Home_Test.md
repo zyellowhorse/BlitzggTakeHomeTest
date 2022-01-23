@@ -9,9 +9,9 @@ After reading over the [requirements](Blitz_DevOps_Take_Home_Test.pdf) and the [
 version: '3'
 
 services:
-	webhook:
-		image: almir/webhook
-		command: -verbose
+  webhook:
+    image: almir/webhook
+    command: -verbose
 ```
 
 I wanted to make sure that the container works and I passed in the verbose flag so that the container will say alive. 
@@ -28,7 +28,7 @@ services:
     volumes:
       - ./hooks.json:/etc/hooks/hooks.json
       - ./scripts:/var/scripts/
-	  - ./storage:/storage/
+      - ./storage:/storage/
 ```
 
 ## Hooks setup

@@ -1,6 +1,6 @@
 # My Approach to Blitz.gg Webhook Take Home Test
 
-I will be documenting my thought process and my approach to solving the Blitz.gg Webhook Take Home Test. The requirements for the test can be found here [here](Blitz_DevOps_Take_Home_Test.pdf). This is meant to be ancillary to the objective as well as to my commit messages. This is to show my thought process and to show the order on of how I approached the problems. 
+I will be documenting my thought process and my approach to solving the Blitz.gg Webhook Take Home Test. The requirements for the test can be found [here](Blitz_DevOps_Take_Home_Test.pdf). This is meant to be ancillary to the objective as well as to my commit messages. This is to show my thought process and to show the order on of how I approached the problems. 
 
 ## Webhook container setup
 
